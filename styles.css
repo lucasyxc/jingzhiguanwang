@@ -1,3 +1,12 @@
+/* 全局变量 - 添加在文件开头 */
+:root {
+    --primary-color: #0066cc;
+    --light-bg: #f8f9fa;
+    --lighter-bg: #edf2f7;
+    --dark-bg: #1a1a1a;
+    --section-padding: 80px 0;
+}
+
 /* 全局样式 */
 html {
     scroll-behavior: smooth;
@@ -16,6 +25,24 @@ body {
     padding: 15px 0;
 }
 
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.company-name {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .company-name {
+        font-size: 1rem;
+    }
+}
+
 .nav-link {
     font-size: 16px;
     margin: 0 10px;
@@ -32,13 +59,13 @@ body {
     height: 2px;
     bottom: -5px;
     left: 50%;
-    background-color: #0066cc;
+    background-color: var(--primary-color);
     transition: all 0.3s ease;
     transform: translateX(-50%);
 }
 
 .nav-link:hover {
-    color: #0066cc !important;
+    color: var(--primary-color) !important;
 }
 
 .nav-link:hover::after {
@@ -47,8 +74,8 @@ body {
 
 /* 按钮样式 */
 .btn-primary {
-    background-color: #0066cc;
-    border-color: #0066cc;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
     padding: 10px 25px;
     transition: all 0.3s ease;
 }
@@ -100,58 +127,109 @@ body {
     text-align: center;
     margin: 60px 0 40px;
     font-weight: bold;
-    color: #0066cc;
+    color: var(--primary-color);
     position: relative;
+    font-size: 2rem;
 }
 
+/* 添加标题下划线效果 */
 .section-title::after {
     content: '';
     position: absolute;
-    width: 60px;
-    height: 3px;
-    background-color: #0066cc;
-    bottom: -10px;
+    bottom: -15px;
     left: 50%;
     transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
 }
 
 .product-card {
     padding: 20px;
     text-align: center;
-    transition: transform 0.3s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     margin-bottom: 30px;
-    background: #fff;
+    background: white;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .product-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
 
 .product-card img {
     width: 100%;
+    height: 250px;
+    object-fit: cover;
     margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.product-card h3 {
+    font-size: 1.5rem;
+    margin: 15px 0;
+    color: #333;
+}
+
+.product-card p {
+    flex-grow: 1;
+    margin-bottom: 20px;
+    color: #666;
+    line-height: 1.6;
+}
+
+.product-card .btn {
+    width: fit-content;
+    margin: 0 auto;
+    padding: 8px 25px;
 }
 
 /* 技术优势样式 */
 .tech-section {
-    padding: 80px 0;
-    background-color: #f8f9fa;
+    padding: var(--section-padding);
+    background-color: white;
 }
 
 .tech-card {
     text-align: center;
     padding: 30px;
-    background: #fff;
+    background: white;
     border-radius: 8px;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 250px;
 }
 
 .tech-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.tech-card i {
+    font-size: 48px;
+    color: #0066cc;
+    margin-bottom: 20px;
+}
+
+.tech-card h4 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.tech-card p {
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
 }
 
 /* 新闻卡片样式 */
@@ -180,9 +258,9 @@ body {
 
 /* 页脚样式 */
 .footer {
-    background: #1a1a1a;
+    background: var(--dark-bg);
     color: #fff;
-    padding: 60px 0;
+    padding: 60px 0 30px;
     margin-top: 60px;
 }
 
@@ -216,11 +294,14 @@ body {
 /* 添加滚动偏移量，防止内容被导航栏遮挡 */
 section {
     scroll-margin-top: 80px;
+    position: relative;
+    overflow: hidden;
 } 
 
 /* 关于我们样式 */
 .about-section {
-    padding: 80px 0;
+    padding: var(--section-padding);
+    background-color: white;
 }
 
 .about-content {
@@ -257,16 +338,17 @@ section {
 
 /* 服务支持样式 */
 .service-section {
-    padding: 80px 0;
+    padding: var(--section-padding);
+    background-color: var(--lighter-bg);
 }
 
 .service-card {
     text-align: center;
     padding: 40px 20px;
-    background: #fff;
+    background: white;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     margin-bottom: 30px;
     height: 100%;
     display: flex;
@@ -276,7 +358,7 @@ section {
 
 .service-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
 
 .service-card i {
@@ -302,4 +384,17 @@ section {
     width: fit-content;
     margin: 0 auto;
     padding: 8px 25px;
+} 
+
+.products-section {
+    padding: var(--section-padding);
+    background-color: var(--lighter-bg);
+}
+
+.row {
+    margin: -15px;
+}
+
+.col-md-4 {
+    padding: 15px;
 } 
