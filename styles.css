@@ -1,0 +1,305 @@
+/* 全局样式 */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Microsoft YaHei', sans-serif;
+    color: #333;
+    padding-top: 70px; /* 为固定导航栏留出空间 */
+}
+
+/* 导航栏样式 */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-color: #fff !important;
+    padding: 15px 0;
+}
+
+.nav-link {
+    font-size: 16px;
+    margin: 0 10px;
+    color: #333 !important;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* 导航栏悬停效果 */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 50%;
+    background-color: #0066cc;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover {
+    color: #0066cc !important;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* 按钮样式 */
+.btn-primary {
+    background-color: #0066cc;
+    border-color: #0066cc;
+    padding: 10px 25px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0052a3;
+    border-color: #0052a3;
+    transform: translateY(-2px);
+}
+
+.btn-outline-primary {
+    color: #0066cc;
+    border-color: #0066cc;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+    background-color: #0066cc;
+    border-color: #0066cc;
+    transform: translateY(-2px);
+}
+
+/* 轮播图样式 */
+.carousel-item {
+    height: 100vh;
+}
+
+.carousel-item img {
+    object-fit: cover;
+    height: 100%;
+}
+
+.carousel-caption {
+    bottom: 20%;
+    text-align: left;
+    background: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+    padding: 30px;
+    border-radius: 4px;
+}
+
+.carousel-caption h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+/* 产品卡片样式 */
+.section-title {
+    text-align: center;
+    margin: 60px 0 40px;
+    font-weight: bold;
+    color: #0066cc;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 3px;
+    background-color: #0066cc;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.product-card {
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s;
+    margin-bottom: 30px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.product-card img {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* 技术优势样式 */
+.tech-section {
+    padding: 80px 0;
+    background-color: #f8f9fa;
+}
+
+.tech-card {
+    text-align: center;
+    padding: 30px;
+    background: #fff;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.tech-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* 新闻卡片样式 */
+.news-card {
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.news-content {
+    padding: 20px;
+    background: #fff;
+}
+
+.date {
+    color: #666;
+    font-size: 14px;
+}
+
+/* 页脚样式 */
+.footer {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 60px 0;
+    margin-top: 60px;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links a {
+    color: #999;
+    text-decoration: none;
+    line-height: 2;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #fff;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .carousel-caption h1 {
+        font-size: 2rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+} 
+
+/* 添加滚动偏移量，防止内容被导航栏遮挡 */
+section {
+    scroll-margin-top: 80px;
+} 
+
+/* 关于我们样式 */
+.about-section {
+    padding: 80px 0;
+}
+
+.about-content {
+    padding: 20px;
+}
+
+.about-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #0066cc;
+}
+
+.about-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.about-features {
+    list-style: none;
+    padding: 0;
+}
+
+.about-features li {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* 服务支持样式 */
+.service-section {
+    padding: 80px 0;
+}
+
+.service-card {
+    text-align: center;
+    padding: 40px 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+    margin-bottom: 30px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.service-card i {
+    font-size: 3rem;
+    color: #0066cc;
+    margin-bottom: 20px;
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #0066cc;
+}
+
+.service-card p {
+    color: #666;
+    margin-bottom: 20px;
+    flex-grow: 1;
+    line-height: 1.6;
+}
+
+.service-card .btn {
+    width: fit-content;
+    margin: 0 auto;
+    padding: 8px 25px;
+} 
