@@ -398,3 +398,330 @@ section {
 .col-md-4 {
     padding: 15px;
 } 
+
+/* 产品详情页样式 */
+.product-detail-section {
+    padding-top: 120px;
+    padding-bottom: 80px;
+}
+
+.product-gallery {
+    margin-bottom: 30px;
+}
+
+.main-image {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.thumbnail-list {
+    display: flex;
+    gap: 10px;
+}
+
+.thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.thumbnail:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.product-info {
+    padding: 20px;
+}
+
+.product-info h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.product-meta {
+    margin-bottom: 30px;
+}
+
+.product-meta span {
+    display: block;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.product-description {
+    margin-bottom: 30px;
+}
+
+.product-description h3 {
+    font-size: 1.5rem;
+    margin: 20px 0;
+    color: #333;
+}
+
+.product-description ul {
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.product-description li {
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.product-contact {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.related-products {
+    margin-top: 80px;
+}
+
+.related-products h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    text-align: center;
+    color: var(--primary-color);
+}
+
+.related-product-card {
+    display: flex;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    transition: transform 0.3s ease;
+}
+
+.related-product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.related-product-card img {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.related-product-card .content {
+    padding: 20px;
+    flex: 1;
+}
+
+.related-product-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.related-product-card p {
+    color: #666;
+    margin-bottom: 15px;
+} 
+
+.footer i {
+    color: var(--primary-color);
+}
+
+.footer .btn-outline-light {
+    border-color: #fff;
+    color: #fff;
+    padding: 8px 20px;
+    font-size: 0.9rem;
+}
+
+.footer .btn-outline-light:hover {
+    background-color: #fff;
+    color: var(--primary-color);
+}
+
+.footer-certification {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+}
+
+.footer-certification img {
+    height: 40px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.footer-certification img:hover {
+    opacity: 1;
+} 
+
+/* 新闻列表样式优化 */
+.news-tag {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.news-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.news-item {
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.news-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.news-item h4 {
+    margin: 10px 0;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.news-item-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+/* 新闻详情页样式 */
+.news-detail-section {
+    padding-top: 120px;
+    padding-bottom: 80px;
+}
+
+.news-header {
+    margin-bottom: 30px;
+}
+
+.news-header h1 {
+    font-size: 2.5rem;
+    margin: 15px 0;
+    color: #333;
+}
+
+.news-meta {
+    color: #666;
+    display: flex;
+    gap: 20px;
+}
+
+.news-meta span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.featured-image {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.news-body {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.news-body h2 {
+    font-size: 1.8rem;
+    margin: 30px 0 20px;
+    color: #333;
+}
+
+.news-share {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.share-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    transition: all 0.3s ease;
+}
+
+.share-btn:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* 侧边栏样式 */
+.sidebar-widget {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.sidebar-widget h3 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: #333;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.recent-news {
+    list-style: none;
+    padding: 0;
+}
+
+.recent-news li {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.recent-news li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.news-categories {
+    list-style: none;
+    padding: 0;
+}
+
+.news-categories li a {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.news-categories li a:hover {
+    color: var(--primary-color);
+} 
