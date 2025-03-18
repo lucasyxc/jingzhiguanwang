@@ -1,289 +1,296 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>上海镜智医疗器械有限公司 - 专业光学镜片制造商</title>
-    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <title>SHINELENS 镜片详情查询</title>
+    <!-- 引入Font Awesome图标库 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- 引入lightbox2库用于图片放大 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            padding: 20px;
+        }
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            touch-action: pan-y;
+        }
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+        .carousel-item {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .carousel-item:hover {
+            transform: scale(1.02);
+        }
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .carousel-control.prev {
+            left: 10px;
+        }
+        .carousel-control.next {
+            right: 10px;
+        }
+        .section {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .section h2 {
+            color: #333;
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .info-item {
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+        }
+        .info-item strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+        /* 新增样式 */
+        .qr-code-section {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #007bff, #00bfff);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .qr-code-section i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        .qr-code-section h2 {
+            margin: 10px 0;
+        }
+        .qr-code-section p {
+            margin: 5px 0;
+            opacity: 0.9;
+        }
+        .info-item i {
+            margin-right: 8px;
+            color: #007bff;
+        }
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+    </style>
 </head>
 <body>
-    <!-- 导航栏 -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="https://picsum.photos/40/40?random=1" alt="公司logo" height="40">
-                <span class="company-name">上海镜智医疗器械有限公司</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#home">首页</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#products">产品系列</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#technology">技术创新</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#news">新闻中心</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">关于我们</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#service">服务支持</a></li>
-                </ul>
+    <div class="container">
+        <!-- 轮播图部分 -->
+        <div class="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <a href="https://picsum.photos/800/300?random=1" data-lightbox="carousel" data-title="产品图片1">
+                        <img src="https://picsum.photos/800/300?random=1" alt="产品图片1">
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="https://picsum.photos/800/300?random=2" data-lightbox="carousel" data-title="产品图片2">
+                        <img src="https://picsum.photos/800/300?random=2" alt="产品图片2">
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="https://picsum.photos/800/300?random=3" data-lightbox="carousel" data-title="产品图片3">
+                        <img src="https://picsum.photos/800/300?random=3" alt="产品图片3">
+                    </a>
+                </div>
             </div>
+            <button class="carousel-control prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-control next"><i class="fas fa-chevron-right"></i></button>
         </div>
-    </nav>
 
-    <!-- 首页轮播图 -->
-    <div id="home" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="https://cdn.pixabay.com/photo/2017/07/31/11/44/laptop-2557576_1280.jpg" class="d-block w-100" alt="高科技镜片">
-                <div class="carousel-caption">
-                    <h1>镜智光学科技</h1>
-                    <p>20年专注光学镜片研发制造，打造行业标杆</p>
-                    <button class="btn btn-primary">了解更多</button>
-                </div>
+        <!-- 防伪查询部分 -->
+        <div class="section">
+            <h2><i class="fas fa-shield-alt"></i> 防伪查询</h2>
+            <div class="form-group">
+                <label for="anti-fake-code"><i class="fas fa-barcode"></i> 请输入防伪码：</label>
+                <input type="text" id="anti-fake-code" placeholder="输入20位防伪码">
             </div>
-            <div class="carousel-item">
-                <img src="https://cdn.pixabay.com/photo/2019/04/29/07/04/software-development-4165307_1280.jpg" class="d-block w-100" alt="研发实验室">
-                <div class="carousel-caption">
-                    <h1>专业研发团队</h1>
-                    <p>拥有20年光学研发经验，100+项专利技术</p>
-                    <button class="btn btn-primary">查看详情</button>
+            <button class="btn" style="width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                <i class="fas fa-search"></i> 立即查询
+            </button>
+        </div>
+
+        <!-- 产品信息部分 -->
+        <div class="section">
+            <h2><i class="fas fa-info-circle"></i> 产品信息</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <strong><i class="fas fa-tag"></i> 品牌</strong>
+                    SHINELENS
+                </div>
+                <div class="info-item">
+                    <strong><i class="fas fa-layer-group"></i> 系列</strong>
+                    星享乐
+                </div>
+                <div class="info-item">
+                    <strong><i class="fas fa-cube"></i> 产品名称</strong>
+                    1.591PC青少年多点离焦护卫镜片 BOX
+                </div>
+                <div class="info-item">
+                    <strong><i class="fas fa-list"></i> 类别</strong>
+                    青少年近视管理
                 </div>
             </div>
         </div>
-        <!-- 添加轮播控制 -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#home" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#home" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </button>
+
+        <!-- 参数信息部分 -->
+        <div class="section">
+            <h2><i class="fas fa-cogs"></i> 参数信息</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <strong><i class="fas fa-eye"></i> 球镜光度</strong>
+                    -2.00 ~ +6.00
+                </div>
+                <div class="info-item">
+                    <strong><i class="fas fa-eye"></i> 柱镜光度</strong>
+                    -2.00 ~ 0.00
+                </div>
+                <div class="info-item">
+                    <strong><i class="fas fa-ruler"></i> 折射率</strong>
+                    1.591
+                </div>
+                <div class="info-item">
+                    <strong><i class="fas fa-chart-line"></i> 阿贝数</strong>
+                    31
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- 产品系列 -->
-    <section id="products" class="products-section">
-        <div class="container">
-            <h2 class="section-title">产品中心</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="product-card">
-                        <img src="https://picsum.photos/400/300?random=1" alt="高清光学镜片">
-                        <h3>高清光学镜片</h3>
-                        <p>采用先进纳米涂层技术，提供卓越的光学性能，适用于高端光学仪器</p>
-                        <a href="products/detail.html" class="btn btn-outline-primary">查看详情</a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="product-card">
-                        <img src="https://picsum.photos/400/300?random=2" alt="防蓝光镜片">
-                        <h3>防蓝光镜片</h3>
-                        <p>有效阻隔有害蓝光，保护眼睛健康，适合长期使用电子设备人群</p>
-                        <a href="products/detail.html" class="btn btn-outline-primary">查看详情</a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="product-card">
-                        <img src="https://picsum.photos/400/300?random=3" alt="AR镀膜镜片">
-                        <h3>AR镀膜镜片</h3>
-                        <p>特殊镀膜工艺，减少光反射，提供清晰视觉体验</p>
-                        <a href="products/detail.html" class="btn btn-outline-primary">查看详情</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- 修改lightbox2库的引入方式 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
+    <script>
+        // 初始化lightbox
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true
+        });
 
-    <!-- 技术优势 -->
-    <section id="technology" class="tech-section bg-light">
-        <div class="container">
-            <h2 class="section-title">技术优势</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="tech-card">
-                        <i class="fas fa-flask"></i>
-                        <h4>创新研发</h4>
-                        <p>拥有独立研发中心，年度研发投入超过营收的15%</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="tech-card">
-                        <i class="fas fa-check-circle"></i>
-                        <h4>品质管控</h4>
-                        <p>通过ISO9001认证，产品良品率达99.9%</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="tech-card">
-                        <i class="fas fa-globe"></i>
-                        <h4>全球服务</h4>
-                        <p>产品出口超过30个国家和地区，深受客户信赖</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        // 轮播图逻辑
+        const carousel = document.querySelector('.carousel');
+        const items = document.querySelectorAll('.carousel-item');
+        const prevBtn = document.querySelector('.carousel-control.prev');
+        const nextBtn = document.querySelector('.carousel-control.next');
+        let currentIndex = 0;
 
-    <!-- 新闻动态 -->
-    <section id="news" class="news-section">
-        <div class="container">
-            <h2 class="section-title">新闻动态</h2>
-            <div class="row">
-                <!-- 主要新闻 -->
-                <div class="col-md-6">
-                    <div class="news-card">
-                        <img src="https://picsum.photos/600/400?random=11" alt="新闻图片">
-                        <div class="news-content">
-                            <span class="news-tag">技术创新</span>
-                            <h3>镜智光学成功研发新一代AR镀膜技术</h3>
-                            <p>近日，我司研发团队成功突破AR镀膜技术瓶颈，透光率提升15%，获得国家发明专利...</p>
-                            <span class="date">2024-03-20</span>
-                            <a href="news/detail.html?id=1" class="btn btn-link">阅读更多 <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <!-- 其他新闻 -->
-                <div class="col-md-6">
-                    <div class="news-list">
-                        <div class="news-item">
-                            <span class="news-tag">企业动态</span>
-                            <h4>镜智光学参加2024光电子展览会</h4>
-                            <p>公司携最新产品亮相第28届中国国际光电博览会，展位号：1A02...</p>
-                            <div class="news-item-footer">
-                                <span class="date">2024-03-15</span>
-                                <a href="news/detail.html?id=2" class="btn btn-link">阅读更多</a>
-                            </div>
-                        </div>
-                        <div class="news-item">
-                            <span class="news-tag">行业资讯</span>
-                            <h4>光学镜片行业发展趋势分析</h4>
-                            <p>随着AR/VR技术的快速发展，光学镜片行业迎来新机遇...</p>
-                            <div class="news-item-footer">
-                                <span class="date">2024-03-10</span>
-                                <a href="news/detail.html?id=3" class="btn btn-link">阅读更多</a>
-                            </div>
-                        </div>
-                        <div class="news-item">
-                            <span class="news-tag">公司新闻</span>
-                            <h4>镜智光学获评"高新技术企业"称号</h4>
-                            <p>经过严格评审，我司成功通过高新技术企业认定...</p>
-                            <div class="news-item-footer">
-                                <span class="date">2024-03-05</span>
-                                <a href="news/detail.html?id=4" class="btn btn-link">阅读更多</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 更多新闻按钮 -->
-            <div class="text-center mt-4">
-                <a href="news/list.html" class="btn btn-outline-primary">查看更多新闻</a>
-            </div>
-        </div>
-    </section>
+        function updateCarousel() {
+            // 隐藏所有项目
+            items.forEach((item, index) => {
+                item.style.display = index === currentIndex ? 'block' : 'none';
+            });
+        }
 
-    <!-- 关于我们 -->
-    <section id="about" class="about-section">
-        <div class="container">
-            <h2 class="section-title">关于我们</h2>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="about-content">
-                        <h3>公司简介</h3>
-                        <p>上海镜智光学科技有限公司成立于2010年，是一家专注于高端光学镜片研发和制造的国家高新技术企业。公司拥有先进的生产设备和专业的研发团队，产品广泛应用于医疗器械、精密仪器、AR/VR设备等领域。</p>
-                        <ul class="about-features">
-                            <li><strong>成立时间：</strong>2010年</li>
-                            <li><strong>员工规模：</strong>300+</li>
-                            <li><strong>研发人员：</strong>100+</li>
-                            <li><strong>专利数量：</strong>80+</li>
-                            <li><strong>认证资质：</strong>ISO9001、ISO14001、高新技术企业</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="about-image">
-                        <img src="https://picsum.photos/600/400?random=4" alt="公司图片">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        function showNext() {
+            currentIndex = (currentIndex + 1) % items.length;
+            updateCarousel();
+        }
 
-    <!-- 服务支持 -->
-    <section id="service" class="service-section bg-light">
-        <div class="container">
-            <h2 class="section-title">服务支持</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="service-card">
-                        <i class="fas fa-headset"></i>
-                        <h3>技术支持</h3>
-                        <p>专业的技术团队为您提供全方位的技术支持，解决方案定制及现场指导服务</p>
-                        <a href="#" class="btn btn-outline-primary">了解更多</a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="service-card">
-                        <i class="fas fa-medal"></i>
-                        <h3>品质保证</h3>
-                        <p>严格的质量管理体系，先进的检测设备，确保每一件产品的品质</p>
-                        <a href="#" class="btn btn-outline-primary">了解更多</a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="service-card">
-                        <i class="fas fa-tools"></i>
-                        <h3>售后服务</h3>
-                        <p>完善的售后服务体系，24小时响应机制，为客户提供无忧售后保障</p>
-                        <a href="#" class="btn btn-outline-primary">了解更多</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        function showPrev() {
+            currentIndex = (currentIndex - 1 + items.length) % items.length;
+            updateCarousel();
+        }
 
-    <!-- 页脚 -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <h5>联系我们</h5>
-                    <p>电话：021-888-8888</p>
-                    <p>邮箱：info@jinzhi-optics.com</p>
-                    <p>地址：上海市浦东新区张江高科技园区科苑路88号</p>
-                </div>
-                <div class="col-md-3">
-                    <h5>快速链接</h5>
-                    <ul class="footer-links">
-                        <li><a href="#about">关于镜智</a></li>
-                        <li><a href="#products">产品中心</a></li>
-                        <li><a href="#news">新闻资讯</a></li>
-                        <li><a href="#service">服务支持</a></li>
-                        <li><a href="#contact">联系我们</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <h5>主要产品</h5>
-                    <ul class="footer-links">
-                        <li><a href="#">医疗光学镜片</a></li>
-                        <li><a href="#">AR/VR光学镜片</a></li>
-                        <li><a href="#">精密仪器镜片</a></li>
-                        <li><a href="#">特种光学镜片</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <h5>关注我们</h5>
-                    <p>关注镜智光学官方微信公众号</p>
-                    <img src="https://via.placeholder.com/120x120" alt="微信二维码">
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>© 2024 上海镜智医疗器械有限公司 版权所有 沪ICP备XXXXXXXX号</p>
-            </div>
-        </div>
-    </footer>
+        // 触摸事件处理
+        let touchStartX = 0;
+        let touchEndX = 0;
 
-    <script src="https://cdn.bootcdn.net/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="main.js"></script>
+        carousel.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        });
+
+        carousel.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].clientX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const swipeDistance = touchStartX - touchEndX;
+
+            if (swipeDistance > swipeThreshold) {
+                showNext();
+            } else if (swipeDistance < -swipeThreshold) {
+                showPrev();
+            }
+        }
+
+        // 按钮事件
+        prevBtn.addEventListener('click', showPrev);
+        nextBtn.addEventListener('click', showNext);
+
+        // 自动播放
+        let autoPlayInterval = setInterval(showNext, 5000);
+
+        // 初始化显示第一张图片
+        updateCarousel();
+
+        // 当用户交互时暂停自动播放
+        carousel.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
+        carousel.addEventListener('mouseleave', () => {
+            autoPlayInterval = setInterval(showNext, 5000);
+        });
+    </script>
 </body>
-</html> 
+</html>
