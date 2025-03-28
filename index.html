@@ -8,132 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- 引入lightbox2库用于图片放大 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .container {
-            padding: 20px;
-        }
-        .carousel {
-            position: relative;
-            width: 100%;
-            height: 300px;
-            overflow: hidden;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            touch-action: pan-y;
-        }
-        .carousel-inner {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            height: 100%;
-        }
-        .carousel-item {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            flex-shrink: 0;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        .carousel-item:hover {
-            transform: scale(1.02);
-        }
-        .carousel-control {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.5);
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            z-index: 10;
-        }
-        .carousel-control.prev {
-            left: 10px;
-        }
-        .carousel-control.next {
-            right: 10px;
-        }
-        .section {
-            background-color: #fff;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .section h2 {
-            color: #333;
-            margin-top: 0;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-top: 15px;
-        }
-        .info-item {
-            padding: 10px;
-            background-color: #f8f9fa;
-            border-radius: 4px;
-        }
-        .info-item strong {
-            display: block;
-            margin-bottom: 5px;
-            color: #666;
-        }
-        /* 新增样式 */
-        .qr-code-section {
-            text-align: center;
-            padding: 30px;
-            background: linear-gradient(135deg, #007bff, #00bfff);
-            color: white;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-        .qr-code-section i {
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
-        .qr-code-section h2 {
-            margin: 10px 0;
-        }
-        .qr-code-section p {
-            margin: 5px 0;
-            opacity: 0.9;
-        }
-        .info-item i {
-            margin-right: 8px;
-            color: #007bff;
-        }
-        .btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-    </style>
+    <!-- 引入自定义样式 -->
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
     <div class="container">
@@ -141,35 +17,28 @@
         <div class="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <a href="https://picsum.photos/800/300?random=1" data-lightbox="carousel" data-title="产品图片1">
-                        <img src="https://picsum.photos/800/300?random=1" alt="产品图片1">
+                    <a href="000.jpg" data-lightbox="carousel" data-title="正阳光学">
+                        <img src="000.jpg" alt="产品海报1">
                     </a>
                 </div>
                 <div class="carousel-item">
-                    <a href="https://picsum.photos/800/300?random=2" data-lightbox="carousel" data-title="产品图片2">
-                        <img src="https://picsum.photos/800/300?random=2" alt="产品图片2">
+                    <a href="001.jpg" data-lightbox="carousel" data-title="正阳光学">
+                        <img src="001.jpg" alt="产品海报2">
                     </a>
                 </div>
                 <div class="carousel-item">
-                    <a href="https://picsum.photos/800/300?random=3" data-lightbox="carousel" data-title="产品图片3">
-                        <img src="https://picsum.photos/800/300?random=3" alt="产品图片3">
+                    <a href="002.jpg" data-lightbox="carousel" data-title="正阳光学">
+                        <img src="002.jpg" alt="产品海报3">
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="003.jpg" data-lightbox="carousel" data-title="正阳光学">
+                        <img src="003.jpg" alt="产品海报4">
                     </a>
                 </div>
             </div>
             <button class="carousel-control prev"><i class="fas fa-chevron-left"></i></button>
             <button class="carousel-control next"><i class="fas fa-chevron-right"></i></button>
-        </div>
-
-        <!-- 防伪查询部分 -->
-        <div class="section">
-            <h2><i class="fas fa-shield-alt"></i> 防伪查询</h2>
-            <div class="form-group">
-                <label for="anti-fake-code"><i class="fas fa-barcode"></i> 请输入防伪码：</label>
-                <input type="text" id="anti-fake-code" placeholder="输入20位防伪码">
-            </div>
-            <button class="btn" style="width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">
-                <i class="fas fa-search"></i> 立即查询
-            </button>
         </div>
 
         <!-- 产品信息部分 -->
@@ -219,78 +88,9 @@
         </div>
     </div>
 
-    <!-- 修改lightbox2库的引入方式 -->
+    <!-- 引入lightbox2库 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
-    <script>
-        // 初始化lightbox
-        lightbox.option({
-            'resizeDuration': 200,
-            'wrapAround': true
-        });
-
-        // 轮播图逻辑
-        const carousel = document.querySelector('.carousel');
-        const items = document.querySelectorAll('.carousel-item');
-        const prevBtn = document.querySelector('.carousel-control.prev');
-        const nextBtn = document.querySelector('.carousel-control.next');
-        let currentIndex = 0;
-
-        function updateCarousel() {
-            // 隐藏所有项目
-            items.forEach((item, index) => {
-                item.style.display = index === currentIndex ? 'block' : 'none';
-            });
-        }
-
-        function showNext() {
-            currentIndex = (currentIndex + 1) % items.length;
-            updateCarousel();
-        }
-
-        function showPrev() {
-            currentIndex = (currentIndex - 1 + items.length) % items.length;
-            updateCarousel();
-        }
-
-        // 触摸事件处理
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        carousel.addEventListener('touchstart', (e) => {
-            touchStartX = e.touches[0].clientX;
-        });
-
-        carousel.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].clientX;
-            handleSwipe();
-        });
-
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            const swipeDistance = touchStartX - touchEndX;
-
-            if (swipeDistance > swipeThreshold) {
-                showNext();
-            } else if (swipeDistance < -swipeThreshold) {
-                showPrev();
-            }
-        }
-
-        // 按钮事件
-        prevBtn.addEventListener('click', showPrev);
-        nextBtn.addEventListener('click', showNext);
-
-        // 自动播放
-        let autoPlayInterval = setInterval(showNext, 5000);
-
-        // 初始化显示第一张图片
-        updateCarousel();
-
-        // 当用户交互时暂停自动播放
-        carousel.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
-        carousel.addEventListener('mouseleave', () => {
-            autoPlayInterval = setInterval(showNext, 5000);
-        });
-    </script>
+    <!-- 引入自定义脚本 -->
+    <script src="index.js"></script>
 </body>
 </html>
