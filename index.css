@@ -1,0 +1,195 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+.container {
+    padding: 20px;
+}
+.carousel {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    touch-action: pan-y;
+}
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%;
+}
+.carousel-item {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 9/6;
+    object-fit: cover;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.carousel-control.prev {
+    left: 15px;
+}
+.carousel-control.next {
+    right: 15px;
+}
+.carousel-control:hover {
+    background: rgba(0,0,0,0.7);
+}
+.section {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.section h2 {
+    color: #333;
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 15px;
+}
+.info-item {
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+.info-item strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+}
+/* 新增样式 */
+.qr-code-section {
+    text-align: center;
+    padding: 30px;
+    background: linear-gradient(135deg, #007bff, #00bfff);
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.qr-code-section i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+.qr-code-section h2 {
+    margin: 10px 0;
+}
+.qr-code-section p {
+    margin: 5px 0;
+    opacity: 0.9;
+}
+.info-item i {
+    margin-right: 8px;
+    color: #007bff;
+}
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+/* 新增lightbox样式 */
+.lb-outerContainer {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+.lb-image {
+    border-radius: 12px;
+}
+.lb-nav a.lb-prev,
+.lb-nav a.lb-next {
+    opacity: 1;
+    background: rgba(0,0,0,0.6);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.lb-nav a.lb-prev:hover,
+.lb-nav a.lb-next:hover {
+    background: rgba(0,0,0,0.8);
+}
+.lb-dataContainer {
+    background: rgba(0,0,0,0.8);
+    border-radius: 0 0 12px 12px;
+    padding: 10px;
+}
+.lb-data .lb-details {
+    color: #fff;
+    text-align: center;
+}
+.lb-data .lb-close {
+    filter: invert(1);
+}
+.lb-save-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 10000;
+}
+.lb-save-btn:hover {
+    background: #0056b3;
+}
+.lb-save-btn i {
+    font-size: 1.2em;
+}
