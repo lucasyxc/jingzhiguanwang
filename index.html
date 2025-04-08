@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHINELENS 镜片详情查询</title>
+    <title>镜片详情查询</title>
     <!-- 引入Font Awesome图标库 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- 引入lightbox2库用于图片放大 -->
@@ -17,22 +17,22 @@
         <div class="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <a href="000.jpg" data-lightbox="carousel" data-title="正阳光学">
+                    <a href="000.jpg" data-lightbox="carousel" data-title="镜片详情">
                         <img src="000.jpg" alt="产品海报1">
                     </a>
                 </div>
                 <div class="carousel-item">
-                    <a href="001.jpg" data-lightbox="carousel" data-title="正阳光学">
+                    <a href="001.jpg" data-lightbox="carousel" data-title="镜片详情">
                         <img src="001.jpg" alt="产品海报2">
                     </a>
                 </div>
                 <div class="carousel-item">
-                    <a href="002.jpg" data-lightbox="carousel" data-title="正阳光学">
+                    <a href="002.jpg" data-lightbox="carousel" data-title="镜片详情">
                         <img src="002.jpg" alt="产品海报3">
                     </a>
                 </div>
                 <div class="carousel-item">
-                    <a href="003.jpg" data-lightbox="carousel" data-title="正阳光学">
+                    <a href="003.jpg" data-lightbox="carousel" data-title="镜片详情">
                         <img src="003.jpg" alt="产品海报4">
                     </a>
                 </div>
@@ -47,19 +47,19 @@
             <div class="info-grid">
                 <div class="info-item">
                     <strong><i class="fas fa-tag"></i> 品牌</strong>
-                    <span id="brand">SHINELENS</span>
+                    <span id="brand"></span>
                 </div>
                 <div class="info-item">
                     <strong><i class="fas fa-layer-group"></i> 系列</strong>
-                    <span id="series">星享乐</span>
+                    <span id="series"></span>
                 </div>
                 <div class="info-item">
                     <strong><i class="fas fa-cube"></i> 产品名称</strong>
-                    <span id="product">1.591PC青少年多点离焦护卫镜片 BOX</span>
+                    <span id="product"></span>
                 </div>
                 <div class="info-item">
                     <strong><i class="fas fa-list"></i> 类别</strong>
-                    青少年近视管理
+                    <span>青少年近视管理</span>
                 </div>
             </div>
         </div>
@@ -70,19 +70,19 @@
             <div class="info-grid">
                 <div class="info-item">
                     <strong><i class="fas fa-eye"></i> 球镜光度</strong>
-                    <span id="sphere">-2.00 ~ +6.00</span>
+                    <span id="sphere"></span>
                 </div>
                 <div class="info-item">
                     <strong><i class="fas fa-eye"></i> 柱镜光度</strong>
-                    <span id="cylinder">-2.00 ~ 0.00</span>
+                    <span id="cylinder"></span>
                 </div>
                 <div class="info-item">
                     <strong><i class="fas fa-ruler"></i> 折射率</strong>
-                    1.591
+                    <span>1.591</span>
                 </div>
                 <div class="info-item">
                     <strong><i class="fas fa-chart-line"></i> 阿贝数</strong>
-                    31
+                    <span>31</span>
                 </div>
             </div>
         </div>
@@ -94,23 +94,35 @@
     <script src="index.js"></script>
     <script>
         // 从URL参数中获取数据
-        const urlParams = new URLSearchParams(window.location.search);
-        const dataParam = urlParams.get('data');
-        
-        if (dataParam) {
-            try {
-                const lensData = JSON.parse(decodeURIComponent(dataParam));
-                
-                // 更新页面显示
-                document.getElementById('brand').textContent = lensData.brand;
-                document.getElementById('series').textContent = lensData.series;
-                document.getElementById('product').textContent = lensData.product;
-                document.getElementById('sphere').textContent = lensData.sphere;
-                document.getElementById('cylinder').textContent = lensData.cylinder;
-            } catch (e) {
-                console.error('Error parsing lens data:', e);
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // 更新页面内容
+        function updatePageContent() {
+            const dataParam = getQueryParam('data');
+            if (dataParam) {
+                try {
+                    const lensData = JSON.parse(decodeURIComponent(dataParam));
+                    console.log('解析的镜片数据:', lensData); // 调试输出
+                    
+                    // 更新页面显示
+                    document.getElementById('brand').textContent = lensData.brand || '';
+                    document.getElementById('series').textContent = lensData.series || '';
+                    document.getElementById('product').textContent = lensData.product || '';
+                    document.getElementById('sphere').textContent = lensData.sphere || '';
+                    document.getElementById('cylinder').textContent = lensData.cylinder || '';
+                } catch (e) {
+                    console.error('解析镜片数据时出错:', e);
+                }
+            } else {
+                console.log('未找到镜片数据参数');
             }
         }
+
+        // 页面加载完成后更新内容
+        document.addEventListener('DOMContentLoaded', updatePageContent);
     </script>
 </body>
 </html>
