@@ -49,12 +49,8 @@
                     if (lensData.product) {
                         const refractiveIndex = extractRefractiveIndex(lensData.product);
                         if (refractiveIndex && lensProperties[refractiveIndex]) {
-                            // 使用更精确的选择器
-                            const refractiveElement = document.querySelector('.info-item strong i.fa-ruler').parentElement.nextElementSibling;
-                            const abbeElement = document.querySelector('.info-item strong i.fa-chart-line').parentElement.nextElementSibling;
-                            
-                            if (refractiveElement) refractiveElement.textContent = refractiveIndex;
-                            if (abbeElement) abbeElement.textContent = lensProperties[refractiveIndex].abbeNumber;
+                            document.getElementById('refractive').textContent = refractiveIndex;
+                            document.getElementById('abbe').textContent = lensProperties[refractiveIndex].abbeNumber;
                             
                             // 添加调试输出
                             console.log('折射率:', refractiveIndex);
@@ -145,11 +141,11 @@
                 </div>
                 <div class="info-item">
                     <strong><i class="fas fa-ruler"></i> 折射率</strong>
-                    <span>1.591</span>
+                    <span id="refractive"></span>
                 </div>
                 <div class="info-item">
                     <strong><i class="fas fa-chart-line"></i> 阿贝数</strong>
-                    <span>31</span>
+                    <span id="abbe"></span>
                 </div>
             </div>
         </div>
