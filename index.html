@@ -93,6 +93,19 @@
     <!-- 引入自定义脚本 -->
     <script src="index.js"></script>
     <script>
+        // 折射率与阿贝数的映射关系
+        const lensProperties = {
+            '1.56': { abbeNumber: 47 },  // 1.56折射率对应阿贝数47
+            '1.60': { abbeNumber: 42 },  // 1.60折射率对应阿贝数42
+            '1.67': { abbeNumber: 32 }   // 1.67折射率对应阿贝数32
+        };
+
+        // 从产品名称中提取折射率
+        function extractRefractiveIndex(productName) {
+            const match = productName.match(/1\.[0-9]{2}/);
+            return match ? match[0] : null;
+        }
+
         // 从URL参数中获取数据
         function getQueryParam(param) {
             const urlParams = new URLSearchParams(window.location.search);
@@ -107,12 +120,21 @@
                     const lensData = JSON.parse(decodeURIComponent(dataParam));
                     console.log('解析的镜片数据:', lensData); // 调试输出
                     
-                    // 更新页面显示
+                    // 更新基本信息显示
                     document.getElementById('brand').textContent = lensData.brand || '';
                     document.getElementById('series').textContent = lensData.series || '';
                     document.getElementById('product').textContent = lensData.product || '';
                     document.getElementById('sphere').textContent = lensData.sphere || '';
                     document.getElementById('cylinder').textContent = lensData.cylinder || '';
+
+                    // 提取折射率并更新相关信息
+                    if (lensData.product) {
+                        const refractiveIndex = extractRefractiveIndex(lensData.product);
+                        if (refractiveIndex && lensProperties[refractiveIndex]) {
+                            document.querySelector('.info-item:nth-child(3) span').textContent = refractiveIndex;
+                            document.querySelector('.info-item:nth-child(4) span').textContent = lensProperties[refractiveIndex].abbeNumber;
+                        }
+                    }
                 } catch (e) {
                     console.error('解析镜片数据时出错:', e);
                 }
