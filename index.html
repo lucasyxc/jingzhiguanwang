@@ -10,6 +10,73 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
     <!-- 引入自定义样式 -->
     <link rel="stylesheet" href="index.css">
+    <script>
+        // 折射率与阿贝数的映射关系
+        const lensProperties = {
+            '1.56': { abbeNumber: 47 },  // 1.56折射率对应阿贝数47
+            '1.60': { abbeNumber: 42 },  // 1.60折射率对应阿贝数42
+            '1.67': { abbeNumber: 32 }   // 1.67折射率对应阿贝数32
+        };
+
+        // 从产品名称中提取折射率
+        function extractRefractiveIndex(productName) {
+            const match = productName.match(/1\.[0-9]{2}/);
+            return match ? match[0] : null;
+        }
+
+        // 从URL参数中获取数据
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // 更新页面内容
+        function updatePageContent() {
+            const dataParam = getQueryParam('data');
+            if (dataParam) {
+                try {
+                    const lensData = JSON.parse(decodeURIComponent(dataParam));
+                    console.log('解析的镜片数据:', lensData); // 调试输出
+                    
+                    // 更新基本信息显示
+                    document.getElementById('brand').textContent = lensData.brand || '';
+                    document.getElementById('series').textContent = lensData.series || '';
+                    document.getElementById('product').textContent = lensData.product || '';
+                    document.getElementById('sphere').textContent = lensData.sphere || '';
+                    document.getElementById('cylinder').textContent = lensData.cylinder || '';
+
+                    // 提取折射率并更新相关信息
+                    if (lensData.product) {
+                        const refractiveIndex = extractRefractiveIndex(lensData.product);
+                        if (refractiveIndex && lensProperties[refractiveIndex]) {
+                            // 使用更精确的选择器
+                            const refractiveElement = document.querySelector('.info-item strong i.fa-ruler').parentElement.nextElementSibling;
+                            const abbeElement = document.querySelector('.info-item strong i.fa-chart-line').parentElement.nextElementSibling;
+                            
+                            if (refractiveElement) refractiveElement.textContent = refractiveIndex;
+                            if (abbeElement) abbeElement.textContent = lensProperties[refractiveIndex].abbeNumber;
+                            
+                            // 添加调试输出
+                            console.log('折射率:', refractiveIndex);
+                            console.log('阿贝数:', lensProperties[refractiveIndex].abbeNumber);
+                        }
+                    }
+                } catch (e) {
+                    console.error('解析镜片数据时出错:', e);
+                }
+            } else {
+                console.log('未找到镜片数据参数');
+            }
+        }
+
+        // 在解析HTML时就开始执行数据填充
+        document.addEventListener('readystatechange', function() {
+            if (document.readyState === 'interactive') {
+                // DOM已经可以操作，但图片等资源还在加载
+                updatePageContent();
+            }
+        });
+    </script>
 </head>
 <body>
     <div class="container">
@@ -18,22 +85,22 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <a href="000.jpg" data-lightbox="carousel" data-title="镜片详情">
-                        <img src="000.jpg" alt="产品海报1">
+                        <img src="000.jpg" alt="产品海报1" loading="lazy">
                     </a>
                 </div>
                 <div class="carousel-item">
                     <a href="001.jpg" data-lightbox="carousel" data-title="镜片详情">
-                        <img src="001.jpg" alt="产品海报2">
+                        <img src="001.jpg" alt="产品海报2" loading="lazy">
                     </a>
                 </div>
                 <div class="carousel-item">
                     <a href="002.jpg" data-lightbox="carousel" data-title="镜片详情">
-                        <img src="002.jpg" alt="产品海报3">
+                        <img src="002.jpg" alt="产品海报3" loading="lazy">
                     </a>
                 </div>
                 <div class="carousel-item">
                     <a href="003.jpg" data-lightbox="carousel" data-title="镜片详情">
-                        <img src="003.jpg" alt="产品海报4">
+                        <img src="003.jpg" alt="产品海报4" loading="lazy">
                     </a>
                 </div>
             </div>
@@ -92,59 +159,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
     <!-- 引入自定义脚本 -->
     <script src="index.js"></script>
-    <script>
-        // 折射率与阿贝数的映射关系
-        const lensProperties = {
-            '1.56': { abbeNumber: 47 },  // 1.56折射率对应阿贝数47
-            '1.60': { abbeNumber: 42 },  // 1.60折射率对应阿贝数42
-            '1.67': { abbeNumber: 32 }   // 1.67折射率对应阿贝数32
-        };
-
-        // 从产品名称中提取折射率
-        function extractRefractiveIndex(productName) {
-            const match = productName.match(/1\.[0-9]{2}/);
-            return match ? match[0] : null;
-        }
-
-        // 从URL参数中获取数据
-        function getQueryParam(param) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(param);
-        }
-
-        // 更新页面内容
-        function updatePageContent() {
-            const dataParam = getQueryParam('data');
-            if (dataParam) {
-                try {
-                    const lensData = JSON.parse(decodeURIComponent(dataParam));
-                    console.log('解析的镜片数据:', lensData); // 调试输出
-                    
-                    // 更新基本信息显示
-                    document.getElementById('brand').textContent = lensData.brand || '';
-                    document.getElementById('series').textContent = lensData.series || '';
-                    document.getElementById('product').textContent = lensData.product || '';
-                    document.getElementById('sphere').textContent = lensData.sphere || '';
-                    document.getElementById('cylinder').textContent = lensData.cylinder || '';
-
-                    // 提取折射率并更新相关信息
-                    if (lensData.product) {
-                        const refractiveIndex = extractRefractiveIndex(lensData.product);
-                        if (refractiveIndex && lensProperties[refractiveIndex]) {
-                            document.querySelector('.info-item:nth-child(3) span').textContent = refractiveIndex;
-                            document.querySelector('.info-item:nth-child(4) span').textContent = lensProperties[refractiveIndex].abbeNumber;
-                        }
-                    }
-                } catch (e) {
-                    console.error('解析镜片数据时出错:', e);
-                }
-            } else {
-                console.log('未找到镜片数据参数');
-            }
-        }
-
-        // 页面加载完成后更新内容
-        document.addEventListener('DOMContentLoaded', updatePageContent);
-    </script>
 </body>
 </html>
