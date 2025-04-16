@@ -19,6 +19,7 @@
                 refraction: "1.597",
                 abbeNumber: "41.00",
                 coating: "超发水绿膜",
+                transmittance: "UV-1/0类",
                 standard: ["GB/T2506-2017", "GB10810.3-2006"]
             },
             "优赞1.60点矩阵近视管理镜片": {
@@ -27,6 +28,7 @@
                 refraction: "1.597",
                 abbeNumber: "41.00",
                 coating: "超发水绿膜",
+                transmittance: "UV-1/0类",
                 standard: ["GB/T2506-2017", "GB10810.3-2006"]
             }
             // 可以添加更多产品映射
@@ -42,10 +44,11 @@
         function updatePageContent() {
             const data = getQueryParam('d');
             if (data) {
-                const [productName, spherical, cylinder, productionDate] = decodeURIComponent(data).split('|');
+                const [productName, spherical, cylinder, productionDate, serialNumber, centerThickness, diameter] = decodeURIComponent(data).split('|');
                 const productInfo = lensMapping[productName] || {};
 
                 // 更新基本信息
+                document.getElementById('serial-number').textContent = serialNumber || '';
                 document.getElementById('brand').textContent = productInfo.brand || '';
                 document.getElementById('series').textContent = productInfo.series || '';
                 document.getElementById('product-name').textContent = productName || '';
@@ -55,8 +58,11 @@
                 document.getElementById('cylinder').textContent = cylinder || '';
                 
                 // 更新技术参数
+                document.getElementById('diameter').textContent = diameter || '';
+                document.getElementById('center-thickness').textContent = centerThickness || '';
                 document.getElementById('refractive').textContent = productInfo.refraction || '';
                 document.getElementById('abbe').textContent = productInfo.abbeNumber || '';
+                document.getElementById('transmittance').textContent = productInfo.transmittance || '';
                 document.getElementById('coating').textContent = productInfo.coating || '';
                 
                 // 更新生产信息
