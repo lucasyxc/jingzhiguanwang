@@ -3,137 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHINELENS 镜片详情查询</title>
+    <title>镜片详情查询</title>
     <!-- 引入Font Awesome图标库 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- 引入lightbox2库用于图片放大 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
+    <!-- 引入自定义样式 -->
+    <link rel="stylesheet" href="index.css">
+    <script>
+        // 镜片数据映射关系
+        const lensMapping = {
+            "优点星1.60点矩阵近视管理镜片": {
+                brand: "优点星",
+                series: "点矩阵系列",
+                refraction: "1.587",
+                abbeNumber: "33.00",
+                coating: "绿膜",
+                transmittance: "UV-1/0类",
+                standard: ["GB/T2506-2017", "GB10810.3-2006"]
+            },
+            "优点星1.60 MR-8点矩阵近视管理镜片": {
+                brand: "优点星",
+                series: "点矩阵系列",
+                refraction: "1.597",
+                abbeNumber: "41.00",
+                coating: "超发水绿膜",
+                transmittance: "UV-1/0类",
+                standard: ["GB/T2506-2017", "GB10810.3-2006"]
+            },
+            "优点星1.67 点矩阵近视管理镜片": {
+                brand: "优点星",
+                series: "点矩阵系列",
+                refraction: "1.667",
+                abbeNumber: "32.00",
+                coating: "超发水绿膜",
+                transmittance: "UV-1/0类",
+                standard: ["GB/T2506-2017", "GB10810.3-2006"]
+            },
+            "优点星1.56多效点矩阵近视管理镜片": {
+                brand: "优点星",
+                series: "多效点矩阵系列",
+                refraction: "1.564",
+                abbeNumber: "37.00",
+                coating: "绿膜",
+                transmittance: "UV-1/0类",
+                standard: ["GB/T2506-2017", "GB10810.3-2006"]
+            },
+            "优点星1.60多效点矩阵近视管理镜片": {
+                brand: "优点星",
+                series: "多效点矩阵系列",
+                refraction: "1.595",
+                abbeNumber: "32.00",
+                coating: "绿膜",
+                transmittance: "UV-1/0类",
+                standard: ["GB/T2506-2017", "GB10810.3-2006"]
+            },
+            "优赞1.60点矩阵近视管理镜片": {
+                brand: "优赞",
+                series: "点矩阵系列",
+                refraction: "1.587",
+                abbeNumber: "33.00",
+                coating: "绿膜",
+                transmittance: "UV-1/0类",
+                standard: ["GB/T2506-2017", "GB10810.3-2006"]
+            },
+            "优赞1.60 MR-8点矩阵近视管理镜片": {
+                brand: "优赞",
+                series: "点矩阵系列",
+                refraction: "1.597",
+                abbeNumber: "41.00",
+                coating: "超发水绿膜",
+                transmittance: "UV-1/0类",
+                standard: ["GB/T2506-2017", "GB10810.3-2006"]
+            },
+            "优赞1.67 点矩阵近视管理镜片": {
+                brand: "优赞",
+                series: "点矩阵系列",
+                refraction: "1.667",
+                abbeNumber: "32.00",
+                coating: "超发水绿膜",
+                transmittance: "UV-1/0类",
+                standard: ["GB/T2506-2017", "GB10810.3-2006"]
+            },
+            "优赞1.56多效点矩阵近视管理镜片": {
+                brand: "优赞",
+                series: "多效点矩阵系列",
+                refraction: "1.564",
+                abbeNumber: "37.00",
+                coating: "绿膜",
+                transmittance: "UV-1/0类",
+                standard: ["GB/T2506-2017", "GB10810.3-2006"]
+            },
+            "优赞1.60多效点矩阵近视管理镜片": {
+                brand: "优赞",
+                series: "多效点矩阵系列",
+                refraction: "1.595",
+                abbeNumber: "32.00",
+                coating: "绿膜",
+                transmittance: "UV-1/0类",
+                standard: ["GB/T2506-2017", "GB10810.3-2006"]
+            }
+        };
+
+        // 从URL参数中获取数据
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
         }
-        .container {
-            padding: 20px;
+
+        // 更新页面内容
+        function updatePageContent() {
+            const data = getQueryParam('d');
+            if (data) {
+                const [productName, spherical, cylinder, productionDate, serialNumber, centerThickness, diameter] = decodeURIComponent(data).split('|');
+                const productInfo = lensMapping[productName] || {};
+
+                // 更新基本信息
+                document.getElementById('serial-number').textContent = serialNumber || '';
+                document.getElementById('brand').textContent = productInfo.brand || '';
+                document.getElementById('series').textContent = productInfo.series || '';
+                document.getElementById('product-name').textContent = productName || '';
+                
+                // 更新光度信息
+                document.getElementById('sphere').textContent = spherical || '';
+                document.getElementById('cylinder').textContent = cylinder || '';
+                
+                // 更新技术参数
+                document.getElementById('diameter').textContent = diameter || '';
+                document.getElementById('center-thickness').textContent = centerThickness || '';
+                document.getElementById('refractive').textContent = productInfo.refraction || '';
+                document.getElementById('abbe').textContent = productInfo.abbeNumber || '';
+                document.getElementById('transmittance').textContent = productInfo.transmittance || '';
+                document.getElementById('coating').textContent = productInfo.coating || '';
+                
+                // 更新生产信息
+                document.getElementById('production-date').textContent = productionDate.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3') || '';
+                document.getElementById('standard').textContent = Array.isArray(productInfo.standard) ? 
+                    productInfo.standard.join(', ') : productInfo.standard || '';
+            }
         }
-        .carousel {
-            position: relative;
-            width: 100%;
-            height: 300px;
-            overflow: hidden;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            touch-action: pan-y;
-        }
-        .carousel-inner {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            height: 100%;
-        }
-        .carousel-item {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            flex-shrink: 0;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        .carousel-item:hover {
-            transform: scale(1.02);
-        }
-        .carousel-control {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.5);
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            z-index: 10;
-        }
-        .carousel-control.prev {
-            left: 10px;
-        }
-        .carousel-control.next {
-            right: 10px;
-        }
-        .section {
-            background-color: #fff;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .section h2 {
-            color: #333;
-            margin-top: 0;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-top: 15px;
-        }
-        .info-item {
-            padding: 10px;
-            background-color: #f8f9fa;
-            border-radius: 4px;
-        }
-        .info-item strong {
-            display: block;
-            margin-bottom: 5px;
-            color: #666;
-        }
-        /* 新增样式 */
-        .qr-code-section {
-            text-align: center;
-            padding: 30px;
-            background: linear-gradient(135deg, #007bff, #00bfff);
-            color: white;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-        .qr-code-section i {
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
-        .qr-code-section h2 {
-            margin: 10px 0;
-        }
-        .qr-code-section p {
-            margin: 5px 0;
-            opacity: 0.9;
-        }
-        .info-item i {
-            margin-right: 8px;
-            color: #007bff;
-        }
-        .btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-    </style>
+
+        // 在DOM加载完成后执行数据填充
+        document.addEventListener('DOMContentLoaded', updatePageContent);
+    </script>
 </head>
 <body>
     <div class="container">
@@ -141,18 +153,23 @@
         <div class="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <a href="https://picsum.photos/800/300?random=1" data-lightbox="carousel" data-title="产品图片1">
-                        <img src="https://picsum.photos/800/300?random=1" alt="产品图片1">
+                    <a href="000.jpg" data-lightbox="carousel" data-title="镜片详情">
+                        <img src="000.jpg" alt="产品海报1" loading="lazy">
                     </a>
                 </div>
                 <div class="carousel-item">
-                    <a href="https://picsum.photos/800/300?random=2" data-lightbox="carousel" data-title="产品图片2">
-                        <img src="https://picsum.photos/800/300?random=2" alt="产品图片2">
+                    <a href="001.jpg" data-lightbox="carousel" data-title="镜片详情">
+                        <img src="001.jpg" alt="产品海报2" loading="lazy">
                     </a>
                 </div>
                 <div class="carousel-item">
-                    <a href="https://picsum.photos/800/300?random=3" data-lightbox="carousel" data-title="产品图片3">
-                        <img src="https://picsum.photos/800/300?random=3" alt="产品图片3">
+                    <a href="002.jpg" data-lightbox="carousel" data-title="镜片详情">
+                        <img src="002.jpg" alt="产品海报3" loading="lazy">
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="003.jpg" data-lightbox="carousel" data-title="镜片详情">
+                        <img src="003.jpg" alt="产品海报4" loading="lazy">
                     </a>
                 </div>
             </div>
@@ -160,137 +177,94 @@
             <button class="carousel-control next"><i class="fas fa-chevron-right"></i></button>
         </div>
 
-        <!-- 防伪查询部分 -->
+        <!-- 基本信息部分 -->
         <div class="section">
-            <h2><i class="fas fa-shield-alt"></i> 防伪查询</h2>
-            <div class="form-group">
-                <label for="anti-fake-code"><i class="fas fa-barcode"></i> 请输入防伪码：</label>
-                <input type="text" id="anti-fake-code" placeholder="输入20位防伪码">
-            </div>
-            <button class="btn" style="width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">
-                <i class="fas fa-search"></i> 立即查询
-            </button>
-        </div>
-
-        <!-- 产品信息部分 -->
-        <div class="section">
-            <h2><i class="fas fa-info-circle"></i> 产品信息</h2>
+            <h2><i class="fas fa-info-circle"></i> 基本信息</h2>
             <div class="info-grid">
-                <div class="info-item">
+                <div class="info-item full-width">
+                    <strong><i class="fas fa-barcode"></i> 序列号</strong>
+                    <span id="serial-number"></span>
+                </div>
+                <div class="info-item full-width">
                     <strong><i class="fas fa-tag"></i> 品牌</strong>
-                    SHINELENS
+                    <span id="brand"></span>
                 </div>
-                <div class="info-item">
+                <div class="info-item full-width">
                     <strong><i class="fas fa-layer-group"></i> 系列</strong>
-                    星享乐
+                    <span id="series"></span>
                 </div>
-                <div class="info-item">
+                <div class="info-item full-width">
                     <strong><i class="fas fa-cube"></i> 产品名称</strong>
-                    1.591PC青少年多点离焦护卫镜片 BOX
-                </div>
-                <div class="info-item">
-                    <strong><i class="fas fa-list"></i> 类别</strong>
-                    青少年近视管理
+                    <span id="product-name"></span>
                 </div>
             </div>
         </div>
 
-        <!-- 参数信息部分 -->
+        <!-- 光度信息部分 -->
         <div class="section">
-            <h2><i class="fas fa-cogs"></i> 参数信息</h2>
+            <h2><i class="fas fa-eye"></i> 光度信息</h2>
             <div class="info-grid">
                 <div class="info-item">
-                    <strong><i class="fas fa-eye"></i> 球镜光度</strong>
-                    -2.00 ~ +6.00
+                    <strong><i class="fas fa-circle"></i> 球镜</strong>
+                    <span id="sphere"></span>
                 </div>
                 <div class="info-item">
-                    <strong><i class="fas fa-eye"></i> 柱镜光度</strong>
-                    -2.00 ~ 0.00
+                    <strong><i class="fas fa-adjust"></i> 柱镜</strong>
+                    <span id="cylinder"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 技术参数部分 -->
+        <div class="section">
+            <h2><i class="fas fa-cogs"></i> 技术参数</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <strong><i class="fas fa-ruler-horizontal"></i> 直径</strong>
+                    <span id="diameter"></span>
+                </div>
+                <div class="info-item">
+                    <strong><i class="fas fa-ruler-vertical"></i> 中心厚度</strong>
+                    <span id="center-thickness"></span>
                 </div>
                 <div class="info-item">
                     <strong><i class="fas fa-ruler"></i> 折射率</strong>
-                    1.591
+                    <span id="refractive"></span>
                 </div>
                 <div class="info-item">
                     <strong><i class="fas fa-chart-line"></i> 阿贝数</strong>
-                    31
+                    <span id="abbe"></span>
+                </div>
+                <div class="info-item">
+                    <strong><i class="fas fa-sun"></i> 透射比</strong>
+                    <span id="transmittance"></span>
+                </div>
+                <div class="info-item">
+                    <strong><i class="fas fa-layer-group"></i> 膜层</strong>
+                    <span id="coating"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 生产信息部分 -->
+        <div class="section">
+            <h2><i class="fas fa-industry"></i> 生产信息</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <strong><i class="fas fa-calendar"></i> 生产日期</strong>
+                    <span id="production-date"></span>
+                </div>
+                <div class="info-item">
+                    <strong><i class="fas fa-certificate"></i> 执行标准</strong>
+                    <span id="standard"></span>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 修改lightbox2库的引入方式 -->
+    <!-- 引入lightbox2库 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
-    <script>
-        // 初始化lightbox
-        lightbox.option({
-            'resizeDuration': 200,
-            'wrapAround': true
-        });
-
-        // 轮播图逻辑
-        const carousel = document.querySelector('.carousel');
-        const items = document.querySelectorAll('.carousel-item');
-        const prevBtn = document.querySelector('.carousel-control.prev');
-        const nextBtn = document.querySelector('.carousel-control.next');
-        let currentIndex = 0;
-
-        function updateCarousel() {
-            // 隐藏所有项目
-            items.forEach((item, index) => {
-                item.style.display = index === currentIndex ? 'block' : 'none';
-            });
-        }
-
-        function showNext() {
-            currentIndex = (currentIndex + 1) % items.length;
-            updateCarousel();
-        }
-
-        function showPrev() {
-            currentIndex = (currentIndex - 1 + items.length) % items.length;
-            updateCarousel();
-        }
-
-        // 触摸事件处理
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        carousel.addEventListener('touchstart', (e) => {
-            touchStartX = e.touches[0].clientX;
-        });
-
-        carousel.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].clientX;
-            handleSwipe();
-        });
-
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            const swipeDistance = touchStartX - touchEndX;
-
-            if (swipeDistance > swipeThreshold) {
-                showNext();
-            } else if (swipeDistance < -swipeThreshold) {
-                showPrev();
-            }
-        }
-
-        // 按钮事件
-        prevBtn.addEventListener('click', showPrev);
-        nextBtn.addEventListener('click', showNext);
-
-        // 自动播放
-        let autoPlayInterval = setInterval(showNext, 5000);
-
-        // 初始化显示第一张图片
-        updateCarousel();
-
-        // 当用户交互时暂停自动播放
-        carousel.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
-        carousel.addEventListener('mouseleave', () => {
-            autoPlayInterval = setInterval(showNext, 5000);
-        });
-    </script>
+    <!-- 引入自定义脚本 -->
+    <script src="index.js"></script>
 </body>
 </html>
