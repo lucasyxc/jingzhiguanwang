@@ -118,6 +118,15 @@
                 const [productName, spherical, cylinder, productionDate, serialNumber, centerThickness, diameter] = decodeURIComponent(data).split('|');
                 const productInfo = lensMapping[productName] || {};
 
+                // 更新视频源
+                const videoElement = document.getElementById('product-video');
+                if (productInfo.brand === '优赞') {
+                    videoElement.querySelector('source').src = '{% static "videos/001.mp4" %}';
+                } else if (productInfo.brand === '优点星') {
+                    videoElement.querySelector('source').src = '{% static "videos/002.mp4" %}';
+                }
+                videoElement.load();
+
                 // 更新基本信息
                 document.getElementById('serial-number').textContent = serialNumber || '';
                 document.getElementById('brand').textContent = productInfo.brand || '';
@@ -175,6 +184,17 @@
             </div>
             <button class="carousel-control prev"><i class="fas fa-chevron-left"></i></button>
             <button class="carousel-control next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+
+        <!-- 视频播放部分 -->
+        <div class="section">
+            <h2><i class="fas fa-video"></i> 产品视频</h2>
+            <div class="video-container">
+                <video id="product-video" controls>
+                    <source src="" type="video/mp4">
+                    您的浏览器不支持视频播放。
+                </video>
+            </div>
         </div>
 
         <!-- 基本信息部分 -->
