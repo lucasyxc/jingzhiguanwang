@@ -1,727 +1,202 @@
-/* 全局变量 - 添加在文件开头 */
-:root {
-    --primary-color: #0066cc;
-    --light-bg: #f8f9fa;
-    --lighter-bg: #edf2f7;
-    --dark-bg: #1a1a1a;
-    --section-padding: 80px 0;
-}
-
-/* 全局样式 */
-html {
-    scroll-behavior: smooth;
-}
-
 body {
-    font-family: 'Microsoft YaHei', sans-serif;
-    color: #333;
-    padding-top: 70px; /* 为固定导航栏留出空间 */
-}
-
-/* 导航栏样式 */
-.navbar {
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    background-color: #fff !important;
-    padding: 15px 0;
-}
-
-.navbar-brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.company-name {
-    font-size: 1.2rem;
-    color: var(--primary-color);
-    font-weight: 500;
-}
-
-@media (max-width: 768px) {
-    .company-name {
-        font-size: 1rem;
-    }
-}
-
-.nav-link {
-    font-size: 16px;
-    margin: 0 10px;
-    color: #333 !important;
-    position: relative;
-    transition: color 0.3s ease;
-}
-
-/* 导航栏悬停效果 */
-.nav-link::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -5px;
-    left: 50%;
-    background-color: var(--primary-color);
-    transition: all 0.3s ease;
-    transform: translateX(-50%);
-}
-
-.nav-link:hover {
-    color: var(--primary-color) !important;
-}
-
-.nav-link:hover::after {
-    width: 100%;
-}
-
-/* 按钮样式 */
-.btn-primary {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-    padding: 10px 25px;
-    transition: all 0.3s ease;
-}
-
-.btn-primary:hover {
-    background-color: #0052a3;
-    border-color: #0052a3;
-    transform: translateY(-2px);
-}
-
-.btn-outline-primary {
-    color: #0066cc;
-    border-color: #0066cc;
-    transition: all 0.3s ease;
-}
-
-.btn-outline-primary:hover {
-    background-color: #0066cc;
-    border-color: #0066cc;
-    transform: translateY(-2px);
-}
-
-/* 轮播图样式 */
-.carousel-item {
-    height: 100vh;
-}
-
-.carousel-item img {
-    object-fit: cover;
-    height: 100%;
-}
-
-.carousel-caption {
-    bottom: 20%;
-    text-align: left;
-    background: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
-    padding: 30px;
-    border-radius: 4px;
-}
-
-.carousel-caption h1 {
-    font-size: 3rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-}
-
-/* 产品卡片样式 */
-.section-title {
-    text-align: center;
-    margin: 60px 0 40px;
-    font-weight: bold;
-    color: var(--primary-color);
-    position: relative;
-    font-size: 2rem;
-}
-
-/* 添加标题下划线效果 */
-.section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background-color: var(--primary-color);
-}
-
-.product-card {
-    padding: 20px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-bottom: 30px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.product-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-}
-
-.product-card img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    margin-bottom: 20px;
-    border-radius: 4px;
-}
-
-.product-card h3 {
-    font-size: 1.5rem;
-    margin: 15px 0;
-    color: #333;
-}
-
-.product-card p {
-    flex-grow: 1;
-    margin-bottom: 20px;
-    color: #666;
-    line-height: 1.6;
-}
-
-.product-card .btn {
-    width: fit-content;
-    margin: 0 auto;
-    padding: 8px 25px;
-}
-
-/* 技术优势样式 */
-.tech-section {
-    padding: var(--section-padding);
-    background-color: white;
-}
-
-.tech-card {
-    text-align: center;
-    padding: 30px;
-    background: white;
-    border-radius: 8px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 250px;
-}
-
-.tech-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-}
-
-.tech-card i {
-    font-size: 48px;
-    color: #0066cc;
-    margin-bottom: 20px;
-}
-
-.tech-card h4 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-    color: #333;
-}
-
-.tech-card p {
-    color: #666;
-    line-height: 1.6;
+    font-family: Arial, sans-serif;
     margin: 0;
-}
-
-/* 新闻卡片样式 */
-.news-card {
-    margin-bottom: 30px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    border-radius: 8px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.news-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-.news-content {
-    padding: 20px;
-    background: #fff;
-}
-
-.date {
-    color: #666;
-    font-size: 14px;
-}
-
-/* 页脚样式 */
-.footer {
-    background: var(--dark-bg);
-    color: #fff;
-    padding: 60px 0 30px;
-    margin-top: 60px;
-}
-
-.footer-links {
-    list-style: none;
     padding: 0;
+    background-color: #f4f4f4;
 }
-
-.footer-links a {
-    color: #999;
-    text-decoration: none;
-    line-height: 2;
-    transition: color 0.3s ease;
+.container {
+    padding: 20px;
 }
-
-.footer-links a:hover {
-    color: #fff;
-}
-
-/* 响应式调整 */
-@media (max-width: 768px) {
-    .carousel-caption h1 {
-        font-size: 2rem;
-    }
-    
-    .section-title {
-        font-size: 1.8rem;
-    }
-} 
-
-/* 添加滚动偏移量，防止内容被导航栏遮挡 */
-section {
-    scroll-margin-top: 80px;
+.carousel {
     position: relative;
-    overflow: hidden;
-} 
-
-/* 关于我们样式 */
-.about-section {
-    padding: var(--section-padding);
-    background-color: white;
-}
-
-.about-content {
-    padding: 20px;
-}
-
-.about-content h3 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    color: #0066cc;
-}
-
-.about-content p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    margin-bottom: 30px;
-}
-
-.about-features {
-    list-style: none;
-    padding: 0;
-}
-
-.about-features li {
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-}
-
-.about-image img {
     width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    height: auto;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    touch-action: pan-y;
 }
-
-/* 服务支持样式 */
-.service-section {
-    padding: var(--section-padding);
-    background-color: var(--lighter-bg);
-}
-
-.service-card {
-    text-align: center;
-    padding: 40px 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-bottom: 30px;
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 }
-
-.service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-}
-
-.service-card i {
-    font-size: 3rem;
-    color: #0066cc;
-    margin-bottom: 20px;
-}
-
-.service-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-    color: #0066cc;
-}
-
-.service-card p {
-    color: #666;
-    margin-bottom: 20px;
-    flex-grow: 1;
-    line-height: 1.6;
-}
-
-.service-card .btn {
-    width: fit-content;
-    margin: 0 auto;
-    padding: 8px 25px;
-} 
-
-.products-section {
-    padding: var(--section-padding);
-    background-color: var(--lighter-bg);
-}
-
-.row {
-    margin: -15px;
-}
-
-.col-md-4 {
-    padding: 15px;
-} 
-
-/* 产品详情页样式 */
-.product-detail-section {
-    padding-top: 120px;
-    padding-bottom: 80px;
-}
-
-.product-gallery {
-    margin-bottom: 30px;
-}
-
-.main-image {
+.carousel-item {
     width: 100%;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.thumbnail-list {
-    display: flex;
-    gap: 10px;
-}
-
-.thumbnail {
-    width: 80px;
-    height: 80px;
+    height: auto;
+    aspect-ratio: 9/6;
     object-fit: cover;
-    border-radius: 4px;
+    flex-shrink: 0;
     cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.thumbnail:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.product-info {
-    padding: 20px;
-}
-
-.product-info h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    color: var(--primary-color);
-}
-
-.product-meta {
-    margin-bottom: 30px;
-}
-
-.product-meta span {
-    display: block;
-    margin-bottom: 10px;
-    color: #666;
-}
-
-.product-description {
-    margin-bottom: 30px;
-}
-
-.product-description h3 {
-    font-size: 1.5rem;
-    margin: 20px 0;
-    color: #333;
-}
-
-.product-description ul {
-    padding-left: 20px;
-    margin-bottom: 20px;
-}
-
-.product-description li {
-    margin-bottom: 10px;
-    color: #666;
-}
-
-.product-contact {
-    display: flex;
-    gap: 15px;
-    margin-top: 30px;
-}
-
-.related-products {
-    margin-top: 80px;
-}
-
-.related-products h2 {
-    font-size: 2rem;
-    margin-bottom: 40px;
-    text-align: center;
-    color: var(--primary-color);
-}
-
-.related-product-card {
-    display: flex;
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
     transition: transform 0.3s ease;
 }
-
-.related-product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-}
-
-.related-product-card img {
-    width: 200px;
-    height: 150px;
-    object-fit: cover;
-}
-
-.related-product-card .content {
-    padding: 20px;
-    flex: 1;
-}
-
-.related-product-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.related-product-card p {
-    color: #666;
-    margin-bottom: 15px;
-} 
-
-.footer i {
-    color: var(--primary-color);
-}
-
-.footer .btn-outline-light {
-    border-color: #fff;
-    color: #fff;
-    padding: 8px 20px;
-    font-size: 0.9rem;
-}
-
-.footer .btn-outline-light:hover {
-    background-color: #fff;
-    color: var(--primary-color);
-}
-
-.footer-certification {
-    border-top: 1px solid rgba(255,255,255,0.1);
-    padding-top: 20px;
-}
-
-.footer-certification img {
-    height: 40px;
-    opacity: 0.8;
-    transition: opacity 0.3s ease;
-}
-
-.footer-certification img:hover {
-    opacity: 1;
-} 
-
-/* 新闻列表样式优化 */
-.news-tag {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 4px 12px;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    display: inline-block;
-    margin-bottom: 10px;
-}
-
-.news-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.news-item {
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-}
-
-.news-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-.news-item h4 {
-    margin: 10px 0;
-    font-size: 1.2rem;
-    color: #333;
-}
-
-.news-item-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 15px;
-}
-
-/* 新闻详情页样式 */
-.news-detail-section {
-    padding-top: 120px;
-    padding-bottom: 80px;
-}
-
-.news-header {
-    margin-bottom: 30px;
-}
-
-.news-header h1 {
-    font-size: 2.5rem;
-    margin: 15px 0;
-    color: #333;
-}
-
-.news-meta {
-    color: #666;
-    display: flex;
-    gap: 20px;
-}
-
-.news-meta span {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.featured-image {
+.carousel-item img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 8px;
-    margin-bottom: 30px;
 }
-
-.news-body {
-    font-size: 1.1rem;
-    line-height: 1.8;
-}
-
-.news-body h2 {
-    font-size: 1.8rem;
-    margin: 30px 0 20px;
-    color: #333;
-}
-
-.news-share {
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.share-btn {
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
     width: 40px;
     height: 40px;
-    border-radius: 50%;
-    background: #f8f9fa;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #666;
-    transition: all 0.3s ease;
 }
-
-.share-btn:hover {
-    background: var(--primary-color);
-    color: white;
+.carousel-control.prev {
+    left: 15px;
 }
-
-/* 侧边栏样式 */
-.sidebar-widget {
-    background: white;
-    padding: 25px;
-    border-radius: 8px;
-    margin-bottom: 30px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.carousel-control.next {
+    right: 15px;
 }
-
-.sidebar-widget h3 {
-    font-size: 1.3rem;
+.carousel-control:hover {
+    background: rgba(0,0,0,0.7);
+}
+.section {
+    background-color: #fff;
+    padding: 20px;
     margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.section h2 {
     color: #333;
+    margin-top: 0;
     padding-bottom: 10px;
-    border-bottom: 2px solid var(--primary-color);
-}
-
-.recent-news {
-    list-style: none;
-    padding: 0;
-}
-
-.recent-news li {
-    margin-bottom: 15px;
-    padding-bottom: 15px;
     border-bottom: 1px solid #eee;
 }
-
-.recent-news li:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
+.form-group {
+    margin-bottom: 15px;
 }
-
-.news-categories {
-    list-style: none;
-    padding: 0;
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
 }
-
-.news-categories li a {
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 15px;
+}
+.info-item {
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+.info-item strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+}
+/* 新增样式 */
+.qr-code-section {
+    text-align: center;
+    padding: 30px;
+    background: linear-gradient(135deg, #007bff, #00bfff);
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.qr-code-section i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+.qr-code-section h2 {
+    margin: 10px 0;
+}
+.qr-code-section p {
+    margin: 5px 0;
+    opacity: 0.9;
+}
+.info-item i {
+    margin-right: 8px;
+    color: #007bff;
+}
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+/* 新增lightbox样式 */
+.lb-outerContainer {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+.lb-image {
+    border-radius: 12px;
+}
+.lb-nav a.lb-prev,
+.lb-nav a.lb-next {
+    opacity: 1;
+    background: rgba(0,0,0,0.6);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.lb-nav a.lb-prev:hover,
+.lb-nav a.lb-next:hover {
+    background: rgba(0,0,0,0.8);
+}
+.lb-dataContainer {
+    background: rgba(0,0,0,0.8);
+    border-radius: 0 0 12px 12px;
+    padding: 10px;
+}
+.lb-data .lb-details {
+    color: #fff;
+    text-align: center;
+}
+.lb-data .lb-close {
+    filter: invert(1);
+}
+.lb-save-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 10000;
+}
+.lb-save-btn:hover {
+    background: #0056b3;
+}
+.lb-save-btn i {
+    font-size: 1.2em;
+}
+.info-item.full-width {
+    width: 100%;
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
-    padding: 10px 0;
-    color: #666;
-    text-decoration: none;
-    transition: color 0.3s ease;
+    align-items: center;
 }
-
-.news-categories li a:hover {
-    color: var(--primary-color);
-} 
