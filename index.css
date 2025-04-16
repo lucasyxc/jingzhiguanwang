@@ -193,3 +193,31 @@ body {
 .lb-save-btn i {
     font-size: 1.2em;
 }
+/* 基本信息列表样式 */
+.info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.info-list .info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.info-list .info-item strong {
+    color: #495057;
+    font-size: 16px;
+}
+
+.info-list .info-item span {
+    color: #212529;
+    font-size: 16px;
+    font-weight: 500;
+}
