@@ -226,21 +226,14 @@ body {
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
-    background-color: #f8f9fa;
+    background: #f8f9fa;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.video-container video {
+#product-video {
     width: 100%;
     display: block;
     border-radius: 8px;
-}
-
-/* 响应式设计 */
-@media (max-width: 768px) {
-    .video-container {
-        max-width: 100%;
-    }
 }
