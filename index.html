@@ -11,18 +11,26 @@
     <!-- 引入自定义样式 -->
     <link rel="stylesheet" href="index.css">
     <script>
-        // 折射率与阿贝数的映射关系
-        const lensProperties = {
-            '1.56': { abbeNumber: 47 },  // 1.56折射率对应阿贝数47
-            '1.60': { abbeNumber: 42 },  // 1.60折射率对应阿贝数42
-            '1.67': { abbeNumber: 32 }   // 1.67折射率对应阿贝数32
+        // 镜片数据映射关系
+        const lensMapping = {
+            "优点星1.60点矩阵近视管理镜片": {
+                brand: "优点星",
+                series: "点矩阵系列",
+                refraction: "1.597",
+                abbeNumber: "41.00",
+                coating: "超发水绿膜",
+                standard: ["GB/T2506-2017", "GB10810.3-2006"]
+            },
+            "优赞1.60点矩阵近视管理镜片": {
+                brand: "优赞",
+                series: "点矩阵系列",
+                refraction: "1.597",
+                abbeNumber: "41.00",
+                coating: "超发水绿膜",
+                standard: ["GB/T2506-2017", "GB10810.3-2006"]
+            }
+            // 可以添加更多产品映射
         };
-
-        // 从产品名称中提取折射率
-        function extractRefractiveIndex(productName) {
-            const match = productName.match(/1\.[0-9]{2}/);
-            return match ? match[0] : null;
-        }
 
         // 从URL参数中获取数据
         function getQueryParam(param) {
@@ -32,40 +40,29 @@
 
         // 更新页面内容
         function updatePageContent() {
-            const serialNumber = getQueryParam('serial_number');
-            if (serialNumber) {
-                // 使用序列号从服务器获取镜片数据
-                fetch(`/api/lens?serial_number=${encodeURIComponent(serialNumber)}`)
-                    .then(response => response.json())
-                    .then(lensData => {
-                        // 更新基本信息
-                        document.getElementById('serial-number').textContent = lensData.serial_number || '';
-                        document.getElementById('brand').textContent = lensData.brand || '';
-                        document.getElementById('series').textContent = lensData.series || '';
-                        document.getElementById('product-name').textContent = lensData.product_name || '';
-                        
-                        // 更新光度信息
-                        document.getElementById('sphere').textContent = lensData.spherical || '';
-                        document.getElementById('cylinder').textContent = lensData.cylinder || '';
-                        
-                        // 更新技术参数
-                        document.getElementById('diameter').textContent = lensData.diameter || '';
-                        document.getElementById('center-thickness').textContent = lensData.centerThickness || '';
-                        document.getElementById('refractive').textContent = lensData.refraction || '';
-                        document.getElementById('abbe').textContent = lensData.abbeNumber || '';
-                        document.getElementById('transmittance').textContent = lensData.transmittance || '';
-                        document.getElementById('coating').textContent = lensData.coating || '';
-                        
-                        // 更新生产信息
-                        document.getElementById('production-date').textContent = lensData.production_date || '';
-                        document.getElementById('standard').textContent = Array.isArray(lensData.standard) ? 
-                            lensData.standard.join(', ') : lensData.standard || '';
-                    })
-                    .catch(error => {
-                        console.error('获取镜片数据失败:', error);
-                    });
-            } else {
-                console.log('未找到镜片数据参数');
+            const data = getQueryParam('d');
+            if (data) {
+                const [productName, spherical, cylinder, productionDate] = decodeURIComponent(data).split('|');
+                const productInfo = lensMapping[productName] || {};
+
+                // 更新基本信息
+                document.getElementById('brand').textContent = productInfo.brand || '';
+                document.getElementById('series').textContent = productInfo.series || '';
+                document.getElementById('product-name').textContent = productName || '';
+                
+                // 更新光度信息
+                document.getElementById('sphere').textContent = spherical || '';
+                document.getElementById('cylinder').textContent = cylinder || '';
+                
+                // 更新技术参数
+                document.getElementById('refractive').textContent = productInfo.refraction || '';
+                document.getElementById('abbe').textContent = productInfo.abbeNumber || '';
+                document.getElementById('coating').textContent = productInfo.coating || '';
+                
+                // 更新生产信息
+                document.getElementById('production-date').textContent = productionDate.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3') || '';
+                document.getElementById('standard').textContent = Array.isArray(productInfo.standard) ? 
+                    productInfo.standard.join(', ') : productInfo.standard || '';
             }
         }
 
