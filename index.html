@@ -13,7 +13,8 @@
     <script>
         // 镜片数据映射关系
         const lensMapping = {
-            "优点星1.60点矩阵管理镜片": {
+            "1": {
+                name: "优点星1.60点矩阵管理镜片",
                 brand: "优点星",
                 series: "PMDT点矩阵系列",
                 refraction: "1.587",
@@ -22,7 +23,8 @@
                 transmittance: "UV-1/0类",
                 standard: ["GB/T2506-2017", "GB10810.3-2006"]
             },
-            "优点星1.60 MR-8PMDT点矩阵管理镜片": {
+            "2": {
+                name: "优点星1.60 MR-8PMDT点矩阵管理镜片",
                 brand: "优点星",
                 series: "PMDT点矩阵系列",
                 refraction: "1.597",
@@ -31,7 +33,8 @@
                 transmittance: "UV-1/0类",
                 standard: ["GB/T2506-2017", "GB10810.3-2006"]
             },
-            "优点星1.67 PMDT点矩阵管理镜片": {
+            "3": {
+                name: "优点星1.67 PMDT点矩阵管理镜片",
                 brand: "优点星",
                 series: "PMDT点矩阵系列",
                 refraction: "1.667",
@@ -40,7 +43,8 @@
                 transmittance: "UV-1/0类",
                 standard: ["GB/T2506-2017", "GB10810.3-2006"]
             },
-            "优点星1.56多效点矩阵管理镜片": {
+            "4": {
+                name: "优点星1.56多效点矩阵管理镜片",
                 brand: "优点星",
                 series: "多效点矩阵系列",
                 refraction: "1.564",
@@ -49,7 +53,8 @@
                 transmittance: "UV-1/0类",
                 standard: ["GB/T2506-2017", "GB10810.3-2006"]
             },
-            "优点星1.60多效点矩阵管理镜片": {
+            "5": {
+                name: "优点星1.60多效点矩阵管理镜片",
                 brand: "优点星",
                 series: "多效点矩阵系列",
                 refraction: "1.595",
@@ -58,7 +63,8 @@
                 transmittance: "UV-1/0类",
                 standard: ["GB/T2506-2017", "GB10810.3-2006"]
             },
-            "优赞1.60点矩阵管理镜片": {
+            "6": {
+                name: "优赞1.60点矩阵管理镜片",
                 brand: "优赞",
                 series: "PMDT点矩阵系列",
                 refraction: "1.587",
@@ -67,7 +73,8 @@
                 transmittance: "UV-1/0类",
                 standard: ["GB/T2506-2017", "GB10810.3-2006"]
             },
-            "优赞1.60 MR-8PMDT点矩阵管理镜片": {
+            "7": {
+                name: "优赞1.60 MR-8PMDT点矩阵管理镜片",
                 brand: "优赞",
                 series: "PMDT点矩阵系列",
                 refraction: "1.597",
@@ -76,7 +83,8 @@
                 transmittance: "UV-1/0类",
                 standard: ["GB/T2506-2017", "GB10810.3-2006"]
             },
-            "优赞1.67 PMDT点矩阵管理镜片": {
+            "8": {
+                name: "优赞1.67 PMDT点矩阵管理镜片",
                 brand: "优赞",
                 series: "PMDT点矩阵系列",
                 refraction: "1.667",
@@ -85,7 +93,8 @@
                 transmittance: "UV-1/0类",
                 standard: ["GB/T2506-2017", "GB10810.3-2006"]
             },
-            "优赞1.56多效点矩阵管理镜片": {
+            "9": {
+                name: "优赞1.56多效点矩阵管理镜片",
                 brand: "优赞",
                 series: "多效点矩阵系列",
                 refraction: "1.564",
@@ -94,7 +103,8 @@
                 transmittance: "UV-1/0类",
                 standard: ["GB/T2506-2017", "GB10810.3-2006"]
             },
-            "优赞1.60多效点矩阵管理镜片": {
+            "10": {
+                name: "优赞1.60多效点矩阵管理镜片",
                 brand: "优赞",
                 series: "多效点矩阵系列",
                 refraction: "1.595",
@@ -115,8 +125,8 @@
         function updatePageContent() {
             const data = getQueryParam('d');
             if (data) {
-                const [productName, spherical, cylinder, productionDate, serialNumber, centerThickness, diameter] = decodeURIComponent(data).split('|');
-                const productInfo = lensMapping[productName] || {};
+                const [productCode, spherical, cylinder, productionDate, serialNumber, centerThickness, diameter] = decodeURIComponent(data).split('|');
+                const productInfo = lensMapping[productCode] || {};
 
                 // 更新视频源
                 const videoSource = document.getElementById('video-source');
@@ -132,7 +142,7 @@
                 document.getElementById('serial-number').textContent = serialNumber || '';
                 document.getElementById('brand').textContent = productInfo.brand || '';
                 document.getElementById('series').textContent = productInfo.series || '';
-                document.getElementById('product-name').textContent = productName || '';
+                document.getElementById('product-name').textContent = productInfo.name || '';
                 
                 // 更新光度信息
                 document.getElementById('sphere').textContent = spherical || '';
