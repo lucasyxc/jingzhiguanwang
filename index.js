@@ -50,73 +50,101 @@ observer.observe(document.body, {
     attributeFilter: ['style']
 });
 
-// 轮播图逻辑
-const carousel = document.querySelector('.carousel');
-const inner = document.querySelector('.carousel-inner');
-const items = document.querySelectorAll('.carousel-item');
-const prevBtn = document.querySelector('.carousel-control.prev');
-const nextBtn = document.querySelector('.carousel-control.next');
-let currentIndex = 0;
-let isTransitioning = false;
+// 轮播图功能
+document.addEventListener('DOMContentLoaded', function() {
+    const carousel = document.querySelector('.carousel-inner');
+    const items = document.querySelectorAll('.carousel-item');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+    let currentIndex = 0;
+    const totalItems = items.length;
 
-function updateCarousel() {
-    if (isTransitioning) return;
-    isTransitioning = true;
-    inner.style.transform = `translateX(-${currentIndex * 100}%)`;
-}
+    // 设置轮播图宽度
+    carousel.style.width = `${totalItems * 100}%`;
+    items.forEach(item => item.style.width = `${100 / totalItems}%`);
 
-function showNext() {
-    if (isTransitioning) return;
-    currentIndex = (currentIndex + 1) % items.length;
-    updateCarousel();
-}
-
-function showPrev() {
-    if (isTransitioning) return;
-    currentIndex = (currentIndex - 1 + items.length) % items.length;
-    updateCarousel();
-}
-
-// 触摸事件处理
-let touchStartX = 0;
-let touchEndX = 0;
-
-carousel.addEventListener('touchstart', (e) => {
-    touchStartX = e.touches[0].clientX;
-});
-
-carousel.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].clientX;
-    handleSwipe();
-});
-
-function handleSwipe() {
-    const swipeThreshold = 50;
-    const swipeDistance = touchStartX - touchEndX;
-    if (swipeDistance > swipeThreshold) {
-        showNext();
-    } else if (swipeDistance < -swipeThreshold) {
-        showPrev();
+    // 下一张
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % totalItems;
+        updateCarousel();
     }
-}
 
-// 按钮事件
-prevBtn.addEventListener('click', showPrev);
-nextBtn.addEventListener('click', showNext);
+    // 上一张
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+        updateCarousel();
+    }
 
-// 自动播放
-let autoPlayInterval = setInterval(showNext, 5000);
+    // 更新轮播图位置
+    function updateCarousel() {
+        carousel.style.transform = `translateX(-${currentIndex * (100 / totalItems)}%)`;
+    }
 
-// 初始化显示第一张图片
-updateCarousel();
+    // 绑定按钮事件
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
 
-// 当用户交互时暂停自动播放
-carousel.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
-carousel.addEventListener('mouseleave', () => {
-    autoPlayInterval = setInterval(showNext, 5000);
-});
+    // 自动轮播
+    setInterval(nextSlide, 5000);
 
-// 过渡结束事件
-inner.addEventListener('transitionend', () => {
-    isTransitioning = false;
+    // 处理二维码点击事件
+    const xhsQR = document.getElementById('xhs-qr');
+    const gzhQR = document.getElementById('gzh-qr');
+
+    let pressTimer;
+    let isLongPress = false;
+
+    function handleQRTouchStart(event) {
+        isLongPress = false;
+        pressTimer = setTimeout(() => {
+            isLongPress = true;
+            // 创建新的Image对象用于全屏显示
+            const fullscreenImg = document.createElement('div');
+            fullscreenImg.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
+            `;
+
+            const img = document.createElement('img');
+            img.src = event.target.src;
+            img.style.cssText = `
+                max-width: 90%;
+                max-height: 90%;
+                object-fit: contain;
+            `;
+
+            fullscreenImg.appendChild(img);
+            document.body.appendChild(fullscreenImg);
+
+            // 点击关闭全屏显示
+            fullscreenImg.addEventListener('click', () => {
+                document.body.removeChild(fullscreenImg);
+            });
+        }, 500); // 500ms长按阈值
+    }
+
+    function handleQRTouchEnd(event) {
+        clearTimeout(pressTimer);
+        // 如果不是长按，则让系统处理默认行为（如长按菜单）
+        if (!isLongPress) {
+            return;
+        }
+        event.preventDefault();
+    }
+
+    // 绑定触摸事件
+    [xhsQR, gzhQR].forEach(qr => {
+        qr.addEventListener('touchstart', handleQRTouchStart);
+        qr.addEventListener('touchend', handleQRTouchEnd);
+        qr.addEventListener('touchcancel', () => clearTimeout(pressTimer));
+        qr.addEventListener('touchmove', () => clearTimeout(pressTimer));
+    });
 });
